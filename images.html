@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Uploader</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link to the custom stylesheet -->
+    <link rel="stylesheet" href="images.css">
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center p-4 sm:p-8">
+
+    <!-- Main Container -->
+    <div class="bg-white p-6 rounded-3xl shadow-xl w-full max-w-4xl space-y-8 relative">
+        <a href="solver.html" class="absolute top-4 right-4 bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-full text-sm transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
+            Solve
+        </a>
+        <h1 class="text-4xl font-bold text-gray-900 text-center">Image Uploader</h1>
+
+        <!-- Mode Toggle -->
+        <div class="flex items-center justify-center space-x-4">
+            <span class="text-lg font-semibold text-gray-700" id="mode-display">Bulk Mode</span>
+            <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" value="" id="mode-toggle" class="sr-only peer">
+                <div class="w-14 h-8 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-indigo-600"></div>
+            </label>
+            <span class="text-lg font-semibold text-gray-700">Single Image Mode</span>
+        </div>
+
+        <!-- Upload Section -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold text-gray-800">Upload Images from Files</h2>
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <input type="text" id="file-question-number" placeholder="Question Number (e.g., 1A)" class="flex-grow w-full sm:w-auto p-3 rounded-full border-2 border-gray-300 focus:outline-none focus:border-indigo-500 transition duration-300">
+                <label class="w-full sm:w-auto flex-grow cursor-pointer bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-3 px-6 rounded-full text-center transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
+                    Select File(s)
+                    <input type="file" id="file-input" class="hidden" accept="image/*" multiple>
+                </label>
+            </div>
+            <p id="file-count" class="text-gray-500 text-sm italic text-center sm:text-left">No files selected</p>
+        </div>
+
+        <hr class="border-gray-200">
+
+        <!-- Camera Section -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold text-gray-800">Capture Image with Camera</h2>
+            <div id="camera-container" class="relative rounded-xl overflow-hidden shadow-lg border-2 border-gray-200" style="display: none;">
+                <video id="camera-stream" class="w-full" autoplay playsinline></video>
+                <canvas id="camera-canvas" class="hidden"></canvas>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <input type="text" id="camera-question-number" placeholder="Question Number (e.g., 2B)" class="flex-grow w-full sm:w-auto p-3 rounded-full border-2 border-gray-300 focus:outline-none focus:border-emerald-500 transition duration-300">
+                <button id="camera-start-btn" class="w-full sm:w-auto flex-grow bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-3 px-6 rounded-full text-center transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
+                    Start Camera
+                </button>
+                <button id="camera-capture-btn" class="w-full sm:w-auto flex-grow bg-fuchsia-500 hover:bg-fuchsia-600 text-white font-medium py-3 px-6 rounded-full text-center transition duration-300 ease-in-out shadow-lg transform hover:scale-105" style="display: none;">
+                    Capture Image
+                </button>
+            </div>
+            <p id="camera-error" class="text-red-500 text-sm text-center" style="display: none;"></p>
+        </div>
+
+        <hr class="border-gray-200">
+
+        <!-- Image Gallery & Controls -->
+        <div class="space-y-4">
+            <div class="flex justify-between items-center">
+                <h2 class="text-2xl font-semibold text-gray-800">Your Saved Images</h2>
+                <button id="clear-images-btn" class="bg-rose-500 hover:bg-rose-600 text-white font-medium py-2 px-4 rounded-full text-sm transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
+                    Clear All
+                </button>
+            </div>
+            <div id="image-gallery" class="image-grid bg-gray-50 p-4 rounded-xl shadow-inner min-h-[200px]">
+                <!-- Images will be dynamically inserted here -->
+            </div>
+            <p id="empty-message" class="text-gray-400 text-center italic" style="display: none;"></p>
+        </div>
+
+    </div>
+    
+    <!-- Link to the custom JavaScript file -->
+    <script src="images.js"></script>
+</body>
+</html>

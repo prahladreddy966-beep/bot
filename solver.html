@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solver</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link to the custom stylesheets -->
+    <link rel="stylesheet" href="solver.css">
+    <link rel="stylesheet" href="question-modal.css">
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center p-4 sm:p-8">
+
+    <!-- Main Container -->
+    <div class="bg-white p-6 rounded-3xl shadow-xl w-full max-w-4xl space-y-8 relative">
+        <a href="images.html" class="absolute top-4 right-4 bg-gray-400 hover:bg-gray-500 text-white font-medium py-2 px-4 rounded-full text-sm transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
+            Back
+        </a>
+        <h1 class="text-4xl font-bold text-gray-900 text-center">Solve Questions</h1>
+        <p class="text-center text-gray-600">Select a solved question (green) to view its details and solution.</p>
+
+        <!-- API Configuration Section -->
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+            <div class="flex items-center gap-2 mb-3">
+                <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                </svg>
+                <h3 class="text-lg font-semibold text-blue-800">API Configuration</h3>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+                <label class="text-sm font-medium text-blue-700 whitespace-nowrap">Together API Key:</label>
+                <input 
+                    type="password" 
+                    id="api-key-input" 
+                    placeholder="Enter your Together AI API key..." 
+                    class="flex-1 px-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                >
+                <button 
+                    id="save-api-key-btn" 
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition duration-200 whitespace-nowrap"
+                >
+                    Save Key
+                </button>
+            </div>
+            <p class="text-xs text-blue-600 mt-2">
+                Get your free API key from <a href="https://api.together.xyz/" target="_blank" class="underline hover:text-blue-800">Together AI</a>. The key is stored locally and never sent to external servers.
+            </p>
+            <div id="api-status" class="mt-2 text-sm"></div>
+        </div>
+
+        <!-- Question Buttons Grid -->
+        <div id="question-buttons-container" class="button-grid bg-gray-50 p-4 rounded-xl shadow-inner min-h-[200px]">
+            <!-- Buttons will be dynamically inserted here -->
+        </div>
+        <p id="empty-message" class="text-gray-400 text-center italic" style="display: none;">No questions found. Please upload images with question numbers first.</p>
+        
+        <!-- Status Legend -->
+        <div class="flex flex-wrap justify-center gap-4 mt-6 p-4 bg-gray-50 rounded-xl">
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 bg-red-200 border-2 border-red-400 rounded"></div>
+                <span class="text-sm text-gray-600">Unsolved</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 bg-yellow-200 border-2 border-yellow-400 rounded"></div>
+                <span class="text-sm text-gray-600">Extracting</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 bg-orange-200 border-2 border-orange-400 rounded"></div>
+                <span class="text-sm text-gray-600">Solving</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 bg-green-200 border-2 border-green-400 rounded"></div>
+                <span class="text-sm text-gray-600">Solved (Clickable)</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Link to the custom JavaScript files -->
+    <script src="question-modal.js"></script>
+    <script src="solver.js"></script>
+</body>
+</html>
